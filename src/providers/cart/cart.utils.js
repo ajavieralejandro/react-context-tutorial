@@ -29,3 +29,8 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
       : cartItem
   );
 };
+
+export const filterItemFromCart = (cartItems, item) => 
+  cartItems.filter(aux => aux.id !==item.id)
+
+  export const getCartItemsCount = cartItems => cartItems.reduce((acumulator,item)=>acumulator+item.quantity,0 );
