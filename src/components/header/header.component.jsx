@@ -6,7 +6,7 @@ import { auth } from '../../firebase/firebase.utils';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import CurrentUserContext from "../../contexts/current-user/current-user.context";
-import CartContext from "../../contexts/cart/cart.context";
+import {CartContext} from "../../providers/cart/cart.provider";
 
 
 
@@ -16,10 +16,9 @@ import './header.styles.scss';
 
 const Header = () =>{
 const currentUser = useContext(CurrentUserContext);
-const [hidden, setHidden] = useState(true);
-const toggleHidden = () =>{
-    setHidden(!hidden);  
-}
+const {hidden} = useContext(CartContext);
+console.log("el valor de hidden es : ",hidden);
+
 console.log("El valor del current user en el header es : ",currentUser);
 return(
   <div className='header'>
@@ -42,12 +41,8 @@ return(
           SIGN IN
         </Link>
       )}
-      <CartContext.Provider value={{
-        hidden,
-        toggleHidden
-      }}>
+   
       <CartIcon />
-      </CartContext.Provider>
     </div>
     {hidden ? null : <CartDropdown />}
   </div>
