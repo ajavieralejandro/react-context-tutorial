@@ -34,3 +34,10 @@ export const filterItemFromCart = (cartItems, item) =>
   cartItems.filter(aux => aux.id !==item.id)
 
   export const getCartItemsCount = cartItems => cartItems.reduce((acumulator,item)=>acumulator+item.quantity,0 );
+
+
+export const selectTotal = cartItems => cartItems.reduce(
+  (accumalatedQuantity, cartItem) =>
+    accumalatedQuantity + cartItem.quantity * cartItem.price,
+  0
+)
